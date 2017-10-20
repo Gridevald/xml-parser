@@ -6,7 +6,7 @@ public class DAOFactory {
 
     private static final DAOFactory INSTANCE = new DAOFactory();
 
-    private final InfoDAO INFO = new InfoDAOImpl();
+    private final InfoDAO INFO_DAO = new InfoDAOImpl();
 
     private DAOFactory(){
     }
@@ -15,7 +15,7 @@ public class DAOFactory {
         return INSTANCE;
     }
 
-    public InfoDAO getInfo() {
-        return INFO;
+    public InfoDAO getInfoDAO() {
+        return INFO_DAO;
     }
 }
