@@ -24,8 +24,6 @@ public class InfoServiceImpl implements InfoService {
 
     private static final Pattern TAG_VALUE = Pattern.compile("(?<=>)[\\p{Graph}\\p{Blank}]+(?=<)");
 
-    private static final Pattern ONLY_SIMPLE_NODE = Pattern.compile("<[\\p{Alnum}-_.]+>[\\p{Graph}\\p{Blank}]+</[\\p{Alnum}-_.]+");
-
     private static final String OPEN_BRACKET = "<";
 
     public Node getNode(String xmlName) throws ParserException {
@@ -40,47 +38,36 @@ public class InfoServiceImpl implements InfoService {
     private Node parseXml(String xmlLine) {
 
         String copy = "";
-        String nextChar;
-        Node node;
+        String nextChar = "";
         Stack<Node> stack = new Stack<>();
 
-        for (int i = 0; i < xmlLine.length() - 3; i++) {
+        for (int i = 0; i < xmlLine.length() - 1; i++) {
             copy += xmlLine.charAt(i);
             nextChar = String.valueOf(xmlLine.charAt(i + 1));
 
             if (OPEN_TAG.matcher(copy).matches() && nextChar.equals(OPEN_BRACKET)) {
-                node = makeNode(copy);
-                stack.push(node);
+                stack.push(makeNode(copy));
                 copy = "";
             } else {
                 if (SIMPLE_NODE.matcher(copy).matches()) {
-                    node = makeNode(copy);
-                    if (!stack.empty()) {
-                        ComplexNode outerNode = (ComplexNode) stack.pop();
-                        outerNode.addInnerNode(node);
-                        stack.push(outerNode);
-                        copy = "";
-                    } else {
-                        return node;
-                    }
+                    Node node = makeNode(copy);
+                    pushNode(stack, node);
+                    copy = "";
                 } else {
                     if (CLOSE_TAG.matcher(copy).matches()) {
-                        node = stack.pop();
-                        ComplexNode outerNode = (ComplexNode) stack.pop();
-                        outerNode.addInnerNode(node);
-                        stack.push(outerNode);
+                        Node node = stack.pop();
+                        pushNode(stack, node);
                         copy = "";
                     }
                 }
             }
         }
 
-        if (ONLY_SIMPLE_NODE.matcher(copy).matches()) {
+        if (SIMPLE_NODE.matcher(copy + nextChar).matches()) {
             return makeNode(copy);
         }
 
         return stack.pop();
-
     }
 
     private Node makeNode(String xmlPiece) {
@@ -98,5 +85,11 @@ public class InfoServiceImpl implements InfoService {
             String value = mValue.group();
             return NodeFactory.makeNode(name, value);
         }
+    }
+
+    private void pushNode(Stack<Node> stack, Node node) {
+        ComplexNode outerNode = (ComplexNode) stack.pop();
+        outerNode.addInnerNode(node);
+        stack.push(outerNode);
     }
 }
