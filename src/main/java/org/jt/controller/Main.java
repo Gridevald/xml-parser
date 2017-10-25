@@ -15,26 +15,5 @@ public class Main {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-
-        try {
-            Node node = ServiceFactory.getInstance().getInfoService().getNode("emptyTag.xml");
-            NodePrinter.consolePrint(node);
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Node node = ServiceFactory.getInstance().getInfoService().getNode("simpleTag.xml");
-            NodePrinter.consolePrint(node);
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Node node = ServiceFactory.getInstance().getInfoService().getNode("test01.xml");
-            NodePrinter.consolePrint(node);
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
     }
 }
