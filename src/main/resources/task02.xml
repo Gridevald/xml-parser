@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+    <person id="001">
+        <student>
+            <first-name>Pavel</first-name>
+            <last-name>Yudzitski</last-name>
+            <birthday>05.08.1990</birthday>
+        </student>
+    </person>
+    <person id="002">
+        <worker income="$300">
+            <first-name>Ivan</first-name>
+            <last-name>Ivanov</last-name>
+            <birthday>04.09.1985</birthday>
+            <parrents>
+                <parrent role="mother">
+                    <first-name>Anna</first-name>
+                    <last-name>Ivanova</last-name>
+                    <birthday>23.03.1960</birthday>
+                </parrent>
+                <parrent role="father">
+                    <first-name>Petr</first-name>
+                    <last-name>Ivanov</last-name>
+                    <birthday>14.05.1960</birthday>
+                </parrent>
+            </parrents>
+        </worker>
+    </person>
+</people>

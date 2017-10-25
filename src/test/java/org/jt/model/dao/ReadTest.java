@@ -1,6 +1,6 @@
 package org.jt.model.dao;
 
-import org.jt.model.exception.DAOException;
+import org.jt.model.dao.exception.DAOException;
 import org.junit.Test;
 
 public class ReadTest {
@@ -8,7 +8,7 @@ public class ReadTest {
     @Test
     public void readTestOne() throws DAOException {
         InfoDAO infoDAO = DAOFactory.getInstance().getInfoDAO();
-        System.out.println(infoDAO.getXml("test.xml"));
+        System.out.println(infoDAO.getXml("task02.xml"));
     }
 
     @Test(expected = DAOException.class)

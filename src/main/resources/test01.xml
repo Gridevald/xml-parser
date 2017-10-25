@@ -1,0 +1,7 @@
+<t1 a="a1" b="b1">
+    <t2 a = "a1" b="a2">text of tag</t2>
+    <t3>tag3</t3>
+    <t4>
+        <t5>tag5</t5>
+    </t4>
+</t1>

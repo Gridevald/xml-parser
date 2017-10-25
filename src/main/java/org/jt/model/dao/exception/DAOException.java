@@ -1,4 +1,4 @@
-package org.jt.model.exception;
+package org.jt.model.dao.exception;
 
 public class DAOException extends Exception{
 
