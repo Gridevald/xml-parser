@@ -1,6 +1,7 @@
 package org.jt.model.service.exception;
 
 public class ServiceException extends Exception {
+
     public ServiceException() {
         super();
     }

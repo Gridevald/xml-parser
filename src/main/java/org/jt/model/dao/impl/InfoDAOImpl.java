@@ -22,13 +22,13 @@ public class InfoDAOImpl implements InfoDAO {
             throw new DAOException("File not found");
         }
 
-        Scanner sc = new Scanner(is);
-        StringBuilder sb = new StringBuilder();
-        while (sc.hasNextLine()) {
-            sb.append(sc.nextLine().trim());
+        try (Scanner sc = new Scanner(is)) {
+            StringBuilder sb = new StringBuilder();
+            while (sc.hasNextLine()) {
+                sb.append(sc.nextLine().trim());
+            }
+            return new Parser().parseXml(prepareXml(sb.toString()));
         }
-
-        return new Parser().parseXml(prepareXml(sb.toString()));
     }
 
     private String prepareXml(String xml) {
