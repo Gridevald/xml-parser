@@ -8,7 +8,7 @@
         </student>
     </person>
     <person id="002">
-        <worker income="$300">
+        <worker income="$300" position="engineer">
             <first-name>Ivan</first-name>
             <last-name>Ivanov</last-name>
             <birthday>04.09.1985</birthday>
