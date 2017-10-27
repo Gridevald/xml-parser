@@ -14,6 +14,8 @@ public class NodePrinter {
 
     private static final int ADD_DASH_COEFFICIENT = 1;
 
+    private static final String NAME_VALUE_SEPARATOR = ": ";
+
     public static void consolePrint(Node node) {
         StringBuilder builder = new StringBuilder();
 
@@ -45,7 +47,7 @@ public class NodePrinter {
 
     private static void appendSimpleNode(StringBuilder builder, SimpleNode node) {
         builder.append(node.getName());
-        builder.append(": ");
+        builder.append(NAME_VALUE_SEPARATOR);
         builder.append(node.getValue());
         if (!node.getAttributes().isEmpty()) {
             builder.append(node.getAttributes());
