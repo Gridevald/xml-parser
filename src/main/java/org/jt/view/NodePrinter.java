@@ -42,7 +42,7 @@ public class NodePrinter {
             if (cn.isInnerNodes()) {
                 List<Node> innerNodes = cn.getInnerNodes();
                 for (Node innerNode : innerNodes) {
-                    appendNode(sb, innerNode, dashNumber + 1);
+                    appendNode(sb, innerNode, dashNumber + 2);
                 }
             }
         }
