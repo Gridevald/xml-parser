@@ -8,7 +8,7 @@ public class DAOFactory {
 
     private final InfoDAO INFO_DAO = new InfoDAOImpl();
 
-    private DAOFactory(){
+    private DAOFactory() {
     }
 
     public static DAOFactory getInstance() {

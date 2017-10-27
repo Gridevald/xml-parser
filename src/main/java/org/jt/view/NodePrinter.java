@@ -19,7 +19,7 @@ public class NodePrinter {
     }
 
     private static void appendNode(StringBuilder builder, Node node, int dashNumber) {
-        for(int i = 0; i < dashNumber; i++) {
+        for (int i = 0; i < dashNumber; i++) {
             builder.append(DASH);
         }
 

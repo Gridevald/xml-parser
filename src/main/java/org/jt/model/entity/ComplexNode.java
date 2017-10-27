@@ -2,7 +2,7 @@ package org.jt.model.entity;
 
 import java.util.*;
 
-public class ComplexNode implements Node{
+public class ComplexNode implements Node {
 
     private String name;
 
