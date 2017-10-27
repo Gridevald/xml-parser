@@ -10,10 +10,14 @@ public class NodePrinter {
 
     private static final String DASH = "--";
 
+    private static final int START_DASH_NUMBER = 0;
+
+    private static final int ADD_DASH_COEFFICIENT = 1;
+
     public static void consolePrint(Node node) {
         StringBuilder builder = new StringBuilder();
 
-        appendNode(builder, node, 0);
+        appendNode(builder, node, START_DASH_NUMBER);
 
         System.out.println(builder);
     }
@@ -33,7 +37,7 @@ public class NodePrinter {
             if (complexNode.isInnerNodes()) {
                 List<Node> innerNodes = complexNode.getInnerNodes();
                 for (Node innerNode : innerNodes) {
-                    appendNode(builder, innerNode, dashNumber + 1);
+                    appendNode(builder, innerNode, dashNumber + ADD_DASH_COEFFICIENT);
                 }
             }
         }
