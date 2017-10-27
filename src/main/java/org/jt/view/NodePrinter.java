@@ -8,43 +8,52 @@ import java.util.List;
 
 public class NodePrinter {
 
+    private static final String DASH = "--";
+
     public static void consolePrint(Node node) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
-        appendNode(sb, node, 0);
+        appendNode(builder, node, 0);
 
-        System.out.println(sb);
+        System.out.println(builder);
     }
 
-    private static void appendNode(StringBuilder sb, Node node, int dashNumber) {
-
+    private static void appendNode(StringBuilder builder, Node node, int dashNumber) {
         for(int i = 0; i < dashNumber; i++) {
-            sb.append("-");
+            builder.append(DASH);
         }
 
         if (node instanceof SimpleNode) {
-            SimpleNode sn = (SimpleNode) node;
-            sb.append(sn.getName());
-            sb.append(": ");
-            sb.append(sn.getValue());
-            if (!sn.getAttributes().isEmpty()) {
-                sb.append(sn.getAttributes());
-            }
-            sb.append("\n");
+            SimpleNode simpleNode = (SimpleNode) node;
+            appendSimpleNode(builder, simpleNode);
         } else {
-            ComplexNode cn = (ComplexNode) node;
-            sb.append(cn.getName());
-            if (!cn.getAttributes().isEmpty()) {
-                sb.append(cn.getAttributes());
-            }
-            sb.append("\n");
+            ComplexNode complexNode = (ComplexNode) node;
+            appendComplexNode(builder, complexNode);
 
-            if (cn.isInnerNodes()) {
-                List<Node> innerNodes = cn.getInnerNodes();
+            if (complexNode.isInnerNodes()) {
+                List<Node> innerNodes = complexNode.getInnerNodes();
                 for (Node innerNode : innerNodes) {
-                    appendNode(sb, innerNode, dashNumber + 2);
+                    appendNode(builder, innerNode, dashNumber + 1);
                 }
             }
         }
+    }
+
+    private static void appendSimpleNode(StringBuilder builder, SimpleNode node) {
+        builder.append(node.getName());
+        builder.append(": ");
+        builder.append(node.getValue());
+        if (!node.getAttributes().isEmpty()) {
+            builder.append(node.getAttributes());
+        }
+        builder.append("\n");
+    }
+
+    private static void appendComplexNode(StringBuilder builder, ComplexNode node) {
+        builder.append(node.getName());
+        if (!node.getAttributes().isEmpty()) {
+            builder.append(node.getAttributes());
+        }
+        builder.append("\n");
     }
 }
